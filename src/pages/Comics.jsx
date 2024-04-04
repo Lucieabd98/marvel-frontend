@@ -11,6 +11,7 @@ const Comics = ({
   setInputComics,
   pageNumberComics,
   setPageNumberComics,
+  handleAddToFavorites,
 }) => {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -59,12 +60,19 @@ const Comics = ({
 
           return (
             <div className="one-comic-card" key={comic._id}>
+              <div
+                onClick={() => {
+                  handleAddToFavorites(comic);
+                  console.log("cliqué");
+                }}
+              >
+                <FontAwesomeIcon className="icon-heart" icon="heart" />
+              </div>
               <div className="card-container">
                 <div
                   className="comic-img"
                   style={{ backgroundImage: `url(${url})` }}
                 >
-                  <FontAwesomeIcon className="icon-heart" icon="heart" />
                   {/* <img src={url} alt="comic" /> */}
                 </div>
                 <div>

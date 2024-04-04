@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
@@ -31,6 +31,35 @@ function App() {
   const [maxOfferCharacters, setMaxOfferCharacters] = useState();
 
   let maxPagesCharacters = Math.ceil(maxOfferCharacters / 100);
+
+  const [favorites, setFavorites] = useState([]);
+
+  // console.log(favorites);
+
+  let favoritesFromCookie;
+
+  useEffect(() => {
+    if (Cookies.get("favorites")) {
+      const favoritesFromCookie = JSON.parse(Cookies.get("favorites"));
+      // console.log(favoritesFromCookie);
+      setFavorites(favoritesFromCookie);
+    }
+  }, [favoritesFromCookie]);
+
+  // console.log(favorites);
+
+  const handleAddToFavorites = (elem) => {
+    const updatedFavorites = [...favorites];
+    updatedFavorites.push(elem);
+    setFavorites(updatedFavorites);
+    Cookies.set("favorites", JSON.stringify(updatedFavorites), {
+      expires: 10,
+    });
+  };
+
+  // Cookies.getJSON("favorites");
+
+  // const [red, setRed] = useState(false);
 
   return (
     <>
@@ -64,10 +93,14 @@ function App() {
                 setInputComics={setInputComics}
                 pageNumberComics={pageNumberComics}
                 setPageNumberComics={setPageNumberComics}
+                handleAddToFavorites={handleAddToFavorites}
               />
             }
           ></Route>
-          <Route path="/favorites" element={<Favorites />}></Route>
+          <Route
+            path="/favorites"
+            element={<Favorites favorites={favorites} />}
+          ></Route>
           <Route path="/comics/:characterId" element={<CharacterComics />} />
         </Routes>
       </Router>

@@ -61,31 +61,34 @@ const Characters = ({
           // console.log(character._id);
 
           return (
-            <Link
-              key={character._id}
-              className="one-character-card"
-              to={`/comics/${character._id}`}
-            >
-              <div className="card-container">
-                <div
-                  className="character-img"
-                  style={{
-                    backgroundImage: `url(${url})`,
-                  }}
-                >
-                  <FontAwesomeIcon className="icon-heart" icon="heart" />
-                  {/* <img src={url} alt="character" /> */}
-                </div>
-                <div>
-                  <h2>{character.name}</h2>
-                </div>
-                {character.description && (
-                  <div>
-                    <p>{character.description}</p>
-                  </div>
-                )}
+            <div key={character._id}>
+              <div className="icon-heart">
+                <FontAwesomeIcon icon="heart" />
               </div>
-            </Link>
+              <Link
+                className="one-character-card"
+                to={`/comics/${character._id}`}
+              >
+                <div className="card-container">
+                  <div
+                    className="character-img"
+                    style={{
+                      backgroundImage: `url(${url})`,
+                    }}
+                  >
+                    {/* <img src={url} alt="character" /> */}
+                  </div>
+                  <div>
+                    <h2>{character.name}</h2>
+                  </div>
+                  {character.description && (
+                    <div>
+                      <p>{character.description}</p>
+                    </div>
+                  )}
+                </div>
+              </Link>
+            </div>
           );
           // console.log(url);
           // console.log(character);
