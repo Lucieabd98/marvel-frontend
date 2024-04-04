@@ -1,16 +1,18 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import SearchInput from "../assets/components/SearchInput";
+import SearchInputComics from "../assets/components/SearchInputComics";
 
-const Comics = () => {
+const Comics = ({ inputComics, setInputComics }) => {
   const [data, setData] = useState({});
-  console.log(data);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async () => {
-    const response = await axios.get("http://localhost:3000/comics");
+    const response = await axios.get(
+      "http://localhost:3000/comics?" + "title=" + inputComics
+    );
     // console.log(response.data.results); --> un tableau avec chaque personnage à l'index i,
     // dont les clés sont .comics (tableau des comics); .description .name .thumbnail ._id
     setData(response.data.results);
@@ -18,14 +20,17 @@ const Comics = () => {
   };
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [inputComics]);
 
   return isLoading ? (
     <span>En cours de chargement...</span>
   ) : (
     <main className="main-comics">
       <div className="search">
-        <SearchInput />
+        <SearchInputComics
+          inputComics={inputComics}
+          setInputComics={setInputComics}
+        />
       </div>
       <div className="all-comics">
         {data.map((comic) => {
@@ -45,6 +50,7 @@ const Comics = () => {
                   className="comic-img"
                   style={{ backgroundImage: `url(${url})` }}
                 >
+                  <FontAwesomeIcon className="icon-heart" icon="heart" />
                   {/* <img src={url} alt="comic" /> */}
                 </div>
                 <div>

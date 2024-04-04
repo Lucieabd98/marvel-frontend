@@ -1,16 +1,20 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import SearchInput from "../assets/components/SearchInput";
+import SearchInputCharacters from "../assets/components/SearchInput";
 
-const Characters = () => {
+const Characters = ({ input, setInput }) => {
+  // console.log(input);
   const [data, setData] = useState({});
   // console.log(data);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async () => {
-    const response = await axios.get("http://localhost:3000/characters");
+    const response = await axios.get(
+      "http://localhost:3000/characters?" + "name=" + input
+    );
     // console.log(response.data.results); --> un tableau avec chaque personnage à l'index i,
     // dont les clés sont .comics (tableau des comics); .description .name .thumbnail ._id
     setData(response.data.results);
@@ -18,15 +22,19 @@ const Characters = () => {
   };
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [input]);
 
   return isLoading ? (
     <span>En cours de chargement...</span>
   ) : (
     <main className="main-characters">
-      <div className="search">
-        <SearchInput />
+      <div className="header-characters">
+        <div className="search">
+          <h1>MARVEL CHARACTERS</h1>
+          <SearchInputCharacters input={input} setInput={setInput} />
+        </div>
       </div>
+
       <div className="all-characters">
         {data.map((character) => {
           const url =
@@ -47,8 +55,11 @@ const Characters = () => {
               <div className="card-container">
                 <div
                   className="character-img"
-                  style={{ backgroundImage: `url(${url})` }}
+                  style={{
+                    backgroundImage: `url(${url})`,
+                  }}
                 >
+                  <FontAwesomeIcon className="icon-heart" icon="heart" />
                   {/* <img src={url} alt="character" /> */}
                 </div>
                 <div className={!character.description && "center"}>

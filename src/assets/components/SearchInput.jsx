@@ -1,11 +1,14 @@
-const SearchInput = () => {
+const SearchInputCharacters = ({ input, setInput }) => {
   return (
     <input
       type="text"
-      placeholder="Recherche tes ... préférés"
+      placeholder="Type your favorite character's name"
       name="recherche"
+      onChange={(event) => {
+        setInput(event.target.value);
+      }}
     ></input>
   );
 };
 
-export default SearchInput;
+export default SearchInputCharacters;

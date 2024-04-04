@@ -10,17 +10,17 @@ const Header = () => {
       <div className="navigation container">
         <div>
           <Link to={"/"}>
-            <button className="nav-button">Characters</button>
+            <button className="nav-button character-button">Characters</button>
           </Link>
         </div>
         <div>
           <Link to={"/comics"}>
-            <button className="nav-button">Comics</button>
+            <button className="nav-button comic-button">Comics</button>
           </Link>
         </div>
         <div>
           <Link to={"/favorites"}>
-            <button className="nav-button">Favorites</button>
+            <button className="nav-button fav-button">Favorites</button>
           </Link>
         </div>
       </div>
