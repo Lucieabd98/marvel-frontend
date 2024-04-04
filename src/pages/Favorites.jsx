@@ -1,5 +1,5 @@
 const Favorites = ({ favorites }) => {
-  console.log(favorites);
+  // console.log(favorites);
   return (
     <main className="main-favorites">
       <div>
@@ -12,8 +12,8 @@ const Favorites = ({ favorites }) => {
           "standard_fantastic" +
           "." +
           elem.thumbnail.extension;
-        console.log(elem);
-        console.log(url);
+        // console.log(elem);
+        // console.log(url);
 
         return (
           <div key={elem._id} className="container-favorites">

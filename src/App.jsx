@@ -36,22 +36,28 @@ function App() {
 
   // console.log(favorites);
 
-  let favoritesFromCookie;
+  // console.log(favorites);
+
+  // console.log(favorites);
+
+  // console.log(favorites);
+  // const favoritesFromCookie = JSON.parse(Cookies.get("favorites"));
 
   useEffect(() => {
     if (Cookies.get("favorites")) {
       const favoritesFromCookie = JSON.parse(Cookies.get("favorites"));
-      // console.log(favoritesFromCookie);
+      console.log(favoritesFromCookie);
       setFavorites(favoritesFromCookie);
     }
-  }, [favoritesFromCookie]);
+  }, []);
 
   // console.log(favorites);
 
-  const handleAddToFavorites = (elem) => {
-    const updatedFavorites = [...favorites];
-    updatedFavorites.push(elem);
+  const handleAddToFavorites = (comic) => {
+    let updatedFavorites = [...favorites];
+    updatedFavorites.push(comic);
     setFavorites(updatedFavorites);
+    // console.log(updatedFavorites);
     Cookies.set("favorites", JSON.stringify(updatedFavorites), {
       expires: 10,
     });
