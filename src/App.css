@@ -235,10 +235,12 @@ input {
   border-radius: 10px;
   color: white;
   cursor: pointer;
+  background-color: #202020;
 }
 
 .icon-heart:hover {
   color: #ec1d25;
+  position: absolute;
 }
 
 /* COMICS */

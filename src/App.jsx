@@ -23,9 +23,14 @@ library.add(faHeart);
 
 function App() {
   const [input, setInput] = useState("");
+
   const [inputComics, setInputComics] = useState("");
   const [pageNumberCharacter, setPageNumberCharacter] = useState(1);
   const [pageNumberComics, setPageNumberComics] = useState(1);
+
+  const [maxOfferCharacters, setMaxOfferCharacters] = useState();
+
+  let maxPagesCharacters = Math.ceil(maxOfferCharacters / 100);
 
   return (
     <>
@@ -45,6 +50,8 @@ function App() {
                 setInput={setInput}
                 pageNumberCharacter={pageNumberCharacter}
                 setPageNumberCharacter={setPageNumberCharacter}
+                setMaxOfferCharacters={setMaxOfferCharacters}
+                maxPagesCharacters={maxPagesCharacters}
               />
             }
           ></Route>

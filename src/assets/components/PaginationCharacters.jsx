@@ -1,10 +1,11 @@
 const PaginationCharacters = ({
   pageNumberCharacter,
   setPageNumberCharacter,
+  maxPagesCharacters,
 }) => {
+  console.log(maxPagesCharacters);
   const previousPage = pageNumberCharacter - 1;
   const nextPage = pageNumberCharacter + 1;
-  const maxPage = 15;
 
   return (
     <div className="pagination-characters">
@@ -38,7 +39,7 @@ const PaginationCharacters = ({
         </button>
       )}
       <button className="current-page">{pageNumberCharacter}</button>
-      {nextPage !== 16 && (
+      {nextPage < maxPagesCharacters && (
         <button
           onClick={() => {
             setPageNumberCharacter(nextPage);
@@ -47,7 +48,7 @@ const PaginationCharacters = ({
           {nextPage}
         </button>
       )}
-      {nextPage + 1 <= maxPage && (
+      {nextPage + 1 <= maxPagesCharacters && (
         <button
           onClick={() => {
             setPageNumberCharacter(nextPage + 1);
@@ -56,10 +57,10 @@ const PaginationCharacters = ({
           {nextPage + 1}
         </button>
       )}
-      {pageNumberCharacter < maxPage && (
+      {pageNumberCharacter < maxPagesCharacters && (
         <button
           onClick={() => {
-            setPageNumberCharacter(maxPage);
+            setPageNumberCharacter(maxPagesCharacters);
           }}
         >
           last page

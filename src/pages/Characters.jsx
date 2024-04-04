@@ -11,6 +11,8 @@ const Characters = ({
   setInput,
   pageNumberCharacter,
   setPageNumberCharacter,
+  setMaxOfferCharacters,
+  maxPagesCharacters,
 }) => {
   // console.log(input);
 
@@ -29,6 +31,7 @@ const Characters = ({
     // console.log(response.data.results); --> un tableau avec chaque personnage à l'index i,
     // dont les clés sont .comics (tableau des comics); .description .name .thumbnail ._id
     setData(response.data.results);
+    setMaxOfferCharacters(response.data.count);
     setIsLoading(false);
   };
   useEffect(() => {
@@ -91,6 +94,7 @@ const Characters = ({
       <PaginationCharacters
         pageNumberCharacter={pageNumberCharacter}
         setPageNumberCharacter={setPageNumberCharacter}
+        maxPagesCharacters={maxPagesCharacters}
       />
     </main>
   );
