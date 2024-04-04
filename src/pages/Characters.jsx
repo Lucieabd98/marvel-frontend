@@ -4,16 +4,27 @@ import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import SearchInputCharacters from "../assets/components/SearchInput";
+import PaginationCharacters from "../assets/components/PaginationCharacters";
 
-const Characters = ({ input, setInput }) => {
+const Characters = ({
+  input,
+  setInput,
+  pageNumberCharacter,
+  setPageNumberCharacter,
+}) => {
   // console.log(input);
+
   const [data, setData] = useState({});
   // console.log(data);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async () => {
     const response = await axios.get(
-      "http://localhost:3000/characters?" + "name=" + input
+      "http://localhost:3000/characters?" +
+        "name=" +
+        input +
+        "&page=" +
+        pageNumberCharacter
     );
     // console.log(response.data.results); --> un tableau avec chaque personnage à l'index i,
     // dont les clés sont .comics (tableau des comics); .description .name .thumbnail ._id
@@ -22,7 +33,7 @@ const Characters = ({ input, setInput }) => {
   };
   useEffect(() => {
     fetchData();
-  }, [input]);
+  }, [input, pageNumberCharacter]);
 
   return isLoading ? (
     <span>En cours de chargement...</span>
@@ -77,6 +88,10 @@ const Characters = ({ input, setInput }) => {
           // console.log(character);
         })}
       </div>
+      <PaginationCharacters
+        pageNumberCharacter={pageNumberCharacter}
+        setPageNumberCharacter={setPageNumberCharacter}
+      />
     </main>
   );
 };

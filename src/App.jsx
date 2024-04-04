@@ -24,6 +24,8 @@ library.add(faHeart);
 function App() {
   const [input, setInput] = useState("");
   const [inputComics, setInputComics] = useState("");
+  const [pageNumberCharacter, setPageNumberCharacter] = useState(1);
+  const [pageNumberComics, setPageNumberComics] = useState(1);
 
   // console.log(input);
   return (
@@ -33,7 +35,14 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Characters input={input} setInput={setInput} />}
+            element={
+              <Characters
+                input={input}
+                setInput={setInput}
+                pageNumberCharacter={pageNumberCharacter}
+                setPageNumberCharacter={setPageNumberCharacter}
+              />
+            }
           ></Route>
           <Route path="/character" element={<SingleCharacter />}></Route>
           <Route
@@ -42,6 +51,8 @@ function App() {
               <Comics
                 inputComics={inputComics}
                 setInputComics={setInputComics}
+                pageNumberComics={pageNumberComics}
+                setPageNumberComics={setPageNumberComics}
               />
             }
           ></Route>

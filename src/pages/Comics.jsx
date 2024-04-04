@@ -4,14 +4,24 @@ import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import SearchInputComics from "../assets/components/SearchInputComics";
+import PaginationComics from "../assets/components/PaginationComics";
 
-const Comics = ({ inputComics, setInputComics }) => {
+const Comics = ({
+  inputComics,
+  setInputComics,
+  pageNumberComics,
+  setPageNumberComics,
+}) => {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async () => {
     const response = await axios.get(
-      "http://localhost:3000/comics?" + "title=" + inputComics
+      "http://localhost:3000/comics?" +
+        "title=" +
+        inputComics +
+        "&page=" +
+        pageNumberComics
     );
     // console.log(response.data.results); --> un tableau avec chaque personnage à l'index i,
     // dont les clés sont .comics (tableau des comics); .description .name .thumbnail ._id
@@ -20,18 +30,22 @@ const Comics = ({ inputComics, setInputComics }) => {
   };
   useEffect(() => {
     fetchData();
-  }, [inputComics]);
+  }, [inputComics, pageNumberComics]);
 
   return isLoading ? (
     <span>En cours de chargement...</span>
   ) : (
     <main className="main-comics">
-      <div className="search">
-        <SearchInputComics
-          inputComics={inputComics}
-          setInputComics={setInputComics}
-        />
+      <div className="header-comics">
+        <div className="search">
+          <h1>MARVEL COMICS</h1>
+          <SearchInputComics
+            inputComics={inputComics}
+            setInputComics={setInputComics}
+          />
+        </div>
       </div>
+
       <div className="all-comics">
         {data.map((comic) => {
           //   console.log(comic);
@@ -64,6 +78,10 @@ const Comics = ({ inputComics, setInputComics }) => {
           );
         })}
       </div>
+      <PaginationComics
+        pageNumberComics={pageNumberComics}
+        setPageNumberComics={setPageNumberComics}
+      />
     </main>
   );
 };

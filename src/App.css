@@ -240,3 +240,20 @@ input {
 .icon-heart:hover {
   color: #ec1d25;
 }
+
+/* COMICS */
+
+.header-comics {
+  background-image: url(./assets/imgs/characters_art_mas_dsk_01.jpg);
+  height: 400px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* PAGINATION CHARACTERS */
+
+button.current-page {
+  background-color: #ec1d25;
+  color: white;
+}
