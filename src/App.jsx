@@ -27,11 +27,15 @@ function App() {
   const [pageNumberCharacter, setPageNumberCharacter] = useState(1);
   const [pageNumberComics, setPageNumberComics] = useState(1);
 
-  // console.log(input);
   return (
     <>
       <Router>
-        <Header />
+        <Header
+          setPageNumberCharacter={setPageNumberCharacter}
+          setPageNumberComics={setPageNumberComics}
+          setInputComics={setInputComics}
+          setInput={setInput}
+        />
         <Routes>
           <Route
             path="/"

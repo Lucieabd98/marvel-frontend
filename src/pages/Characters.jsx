@@ -51,7 +51,7 @@ const Characters = ({
           const url =
             character.thumbnail.path +
             "/" +
-            "portrait_incredible" +
+            "standard_fantastic" +
             "." +
             character.thumbnail.extension;
 
@@ -73,7 +73,7 @@ const Characters = ({
                   <FontAwesomeIcon className="icon-heart" icon="heart" />
                   {/* <img src={url} alt="character" /> */}
                 </div>
-                <div className={!character.description && "center"}>
+                <div>
                   <h2>{character.name}</h2>
                 </div>
                 {character.description && (

@@ -52,7 +52,7 @@ const Comics = ({
           const url =
             comic.thumbnail.path +
             "/" +
-            "portrait_uncanny" +
+            "standard_fantastic" +
             "." +
             comic.thumbnail.extension;
           //   console.log(url);

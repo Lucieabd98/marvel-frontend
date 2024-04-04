@@ -1,5 +1,4 @@
 const PaginationComics = ({ pageNumberComics, setPageNumberComics }) => {
-  console.log(pageNumberComics);
   const previousPage = pageNumberComics - 1;
   const nextPage = pageNumberComics + 1;
   const maxPage = 474;
