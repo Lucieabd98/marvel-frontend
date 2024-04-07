@@ -14,6 +14,8 @@ import Comics from "./pages/Comics";
 import SingleCharacter from "./pages/SingleCharacter";
 import Favorites from "./pages/Favorites";
 import CharacterComics from "./pages/CharacterComics";
+import SignUp from "./pages/SignUp";
+import Login from "./pages/Login";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
@@ -35,16 +37,17 @@ function App() {
   const [maxComics, setMaxComics] = useState();
   let maxPagesComics = Math.ceil(maxComics / 100);
 
-  // const [heartClicked, setHeartClicked] = useState([]);
+  const [token, setToken] = useState(Cookies.get("token") || null);
 
-  // const handleHeartClicked = (characterId) => {
-  //   const newHeartClicked = [...heartClicked];
-  //   newHeartClicked[characterId] = !newHeartClicked[characterId];
-
-  //   setHeartClicked(newHeartClicked);
-  // };
-
-  // console.log(heartClicked);
+  const handleToken = (token) => {
+    if (token) {
+      Cookies.set("token", token, { expires: 10 });
+      setToken(token);
+    } else {
+      Cookies.remove("token");
+      setToken(null);
+    }
+  };
 
   const [favorites, setFavorites] = useState([]);
 
@@ -94,6 +97,8 @@ function App() {
           setPageNumberComics={setPageNumberComics}
           setInputComics={setInputComics}
           setInput={setInput}
+          token={token}
+          handleToken={handleToken}
         />
         <Routes>
           <Route
@@ -109,9 +114,8 @@ function App() {
                 handleAddToFavorites={handleAddToFavorites}
                 favorites={favorites}
                 favoriteId={favoriteId}
-                // handleHeartClicked={handleHeartClicked}
-                // heartClicked={heartClicked}
                 handleEraseFromFavorites={handleEraseFromFavorites}
+                token={token}
               />
             }
           ></Route>
@@ -125,12 +129,11 @@ function App() {
                 pageNumberComics={pageNumberComics}
                 setPageNumberComics={setPageNumberComics}
                 handleAddToFavorites={handleAddToFavorites}
-                // handleHeartClicked={handleHeartClicked}
-                // heartClicked={heartClicked}
                 setMaxComics={setMaxComics}
                 maxPagesComics={maxPagesComics}
                 favoriteId={favoriteId}
                 handleEraseFromFavorites={handleEraseFromFavorites}
+                token={token}
               />
             }
           ></Route>
@@ -139,6 +142,11 @@ function App() {
             element={<Favorites favorites={favorites} />}
           ></Route>
           <Route path="/comics/:characterId" element={<CharacterComics />} />
+          <Route
+            path="/signup"
+            element={<SignUp handleToken={handleToken} />}
+          />
+          <Route path="/login" element={<Login handleToken={handleToken} />} />
         </Routes>
       </Router>
     </>
