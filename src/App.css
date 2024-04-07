@@ -151,7 +151,7 @@ button.deconnect:hover,
 /*=========== CHARACTERS=================*/
 
 .header-characters {
-  background-image: url(/src/assets/imgs/marvel-superheroes-avengers-with-ultron-vuure27sykx3jmdg\ 2.jpg);
+  background-image: url(./assets/imgs/hero.jpg);
   background-position: 0px -57px;
   background-size: cover;
   height: 400px;
