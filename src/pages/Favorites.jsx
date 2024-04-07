@@ -1,12 +1,13 @@
-const Favorites = ({ favorites }) => {
-  // console.log(favorites);
-  return (
+import { Navigate } from "react-router-dom";
+
+const Favorites = ({ favorites, token }) => {
+  return token ? (
     <main className="main-favorites ">
       <div className="header-favorites">
         {favorites.length === 0 ? (
           <h1>Add your first favorite comic or character</h1>
         ) : (
-          <h1>YOUR FAVORITES...</h1>
+          <h1>YOUR FAVORITE...</h1>
         )}
       </div>
       {favorites.length !== 0 && (
@@ -62,21 +63,9 @@ const Favorites = ({ favorites }) => {
         </div>
       )}
     </main>
+  ) : (
+    <Navigate to="/login" />
   );
 };
 
 export default Favorites;
-
-{
-  /* <div>
-<div
-  className="character-img"
-  style={{ backgroundImage: `url(${elem.url})` }}
-></div>
-<div>
-  <div>
-    <h2>{elem.title}</h2>
-  </div>
-</div>
-</div> */
-}

@@ -54,18 +54,14 @@ function App() {
   useEffect(() => {
     if (Cookies.get("favorites")) {
       const favoritesFromCookie = JSON.parse(Cookies.get("favorites"));
-      // console.log(favoritesFromCookie);
       setFavorites(favoritesFromCookie);
     }
   }, []);
-
-  // console.log(favorites);
 
   const handleAddToFavorites = (comic) => {
     let updatedFavorites = [...favorites];
     updatedFavorites.push(comic);
     setFavorites(updatedFavorites);
-    // console.log(updatedFavorites);
     Cookies.set("favorites", JSON.stringify(updatedFavorites), {
       expires: 10,
     });
@@ -82,12 +78,6 @@ function App() {
     setFavorites(updatedFavorites);
     Cookies.set("favorites", JSON.stringify(updatedFavorites), { expires: 10 });
   };
-
-  // console.log(favoriteId);
-
-  // Cookies.getJSON("favorites");
-
-  // const [red, setRed] = useState(false);
 
   return (
     <>
@@ -139,7 +129,7 @@ function App() {
           ></Route>
           <Route
             path="/favorites"
-            element={<Favorites favorites={favorites} />}
+            element={<Favorites favorites={favorites} token={token} />}
           ></Route>
           <Route path="/comics/:characterId" element={<CharacterComics />} />
           <Route

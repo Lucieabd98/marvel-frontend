@@ -61,7 +61,7 @@ const Header = ({
             </Link>
           </div>
         ) : (
-          <div>
+          <div className="disconnect-button">
             <button
               className="deconnect"
               onClick={() => {
@@ -69,7 +69,7 @@ const Header = ({
                 navigate("/");
               }}
             >
-              Deconnect
+              Log Out
             </button>
           </div>
         )}

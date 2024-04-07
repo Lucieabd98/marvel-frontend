@@ -1,10 +1,10 @@
 import axios from "axios";
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import SearchInputComics from "../assets/components/SearchInputComics";
 import PaginationComics from "../assets/components/PaginationComics";
+import { useNavigate } from "react-router-dom";
 
 const Comics = ({
   inputComics,
@@ -16,7 +16,9 @@ const Comics = ({
   maxPagesComics,
   favoriteId,
   handleEraseFromFavorites,
+  token,
 }) => {
+  const navigate = useNavigate();
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
@@ -65,7 +67,6 @@ const Comics = ({
             "standard_fantastic" +
             "." +
             comic.thumbnail.extension;
-          //   console.log(url);
 
           return (
             <div className="one-comic-card" key={comic._id}>
@@ -82,6 +83,10 @@ const Comics = ({
                     title: comic.title,
                     id: comic._id,
                   };
+                  if (!token) {
+                    navigate("/login");
+                  }
+
                   if (favoriteId.find((id) => id === comic._id)) {
                     handleEraseFromFavorites(comic._id);
                   } else {

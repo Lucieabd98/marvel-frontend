@@ -38,11 +38,25 @@ a {
   line-height: 18px;
 }
 
+h1 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  color: white;
+  font-size: 40px;
+}
+
 /* HEADER */
 
 header {
   background: url(./assets/imgs/comic.jpg);
   border-bottom: #202020 3px solid;
+}
+
+.top-header {
+  display: flex;
+  border: #202020 solid 3px;
+  align-items: center;
+  justify-content: center;
 }
 
 header .logo {
@@ -54,16 +68,7 @@ header .logo {
 
 header img {
   width: 200px;
-  /* border: #202020 solid 2px; */
   padding: 2px;
-}
-
-.top-header {
-  display: flex;
-  border: #202020 solid 3px;
-  align-items: center;
-  justify-content: center;
-  /* justify-content: space-between; */
 }
 
 .logo-container {
@@ -77,6 +82,7 @@ header img {
 .connection-buttons {
   display: flex;
   gap: 30px;
+  padding-right: 30px;
 }
 
 button.deconnect,
@@ -111,6 +117,15 @@ header .nav-button {
   opacity: 100%;
 }
 
+header .nav-button:hover {
+  color: #f4f31e;
+  transform: scale(1.2);
+  background-color: #ec1d25;
+  border: white solid 1px;
+  transition-duration: 0.4s;
+  opacity: 90%;
+}
+
 button.deconnect {
   font-size: 15px;
   padding: 10px;
@@ -121,29 +136,22 @@ button.deconnect {
   border-radius: 5px;
 }
 
-header .nav-button:hover {
-  color: #f4f31e;
-  transform: scale(1.2);
-  background-color: #ec1d25;
-  border: white solid 1px;
-  transition-duration: 0.4s;
-  opacity: 90%;
-}
-
-.connection-buttons {
-  margin-right: 30px;
-}
-
 button.deconnect:hover,
 .connection-buttons button:hover {
   opacity: 90%;
   transition-duration: 0.4s;
 }
 
+.disconnect-button {
+  margin-right: 132px;
+}
+
 /*=========== CHARACTERS=================*/
 
 .header-characters {
-  background-image: url(/src/assets/imgs/characters_art_mas_dsk_01.jpg);
+  background-image: url(/src/assets/imgs/marvel-superheroes-avengers-with-ultron-vuure27sykx3jmdg\ 2.jpg);
+  background-position: 0px -57px;
+  background-size: cover;
   height: 400px;
   width: 100%;
   display: flex;
@@ -158,13 +166,6 @@ button.deconnect:hover,
   width: 100%;
   flex-direction: column;
   justify-content: space-around;
-}
-
-h1 {
-  font-family: "Montserrat", sans-serif;
-  font-weight: bold;
-  color: white;
-  font-size: 40px;
 }
 
 input {
@@ -199,14 +200,16 @@ input {
 
 .all-favorite-comics,
 .all-favorite-characters {
-  padding: 90px;
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 20px;
 }
 
 .all-favorites {
-  padding-top: 100px;
+  margin-top: 30px;
 }
 
 .one-character-card,
