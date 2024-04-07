@@ -15,10 +15,13 @@ const Login = ({ handleToken }) => {
     event.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:3000/user/login", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "https://site--marvel-backend--txtnrrwcytwl.code.run/user/login",
+        {
+          email,
+          password,
+        }
+      );
       handleToken(response.data.token);
       navigate("/");
     } catch (error) {

@@ -17,11 +17,14 @@ const SignUp = ({ handleToken }) => {
   const handleSumbit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/user/signup", {
-        username,
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "https://site--marvel-backend--txtnrrwcytwl.code.run/user/signup",
+        {
+          username,
+          email,
+          password,
+        }
+      );
       handleToken(response.data.token);
       navigate("/");
     } catch (error) {

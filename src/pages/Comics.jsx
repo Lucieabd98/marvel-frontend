@@ -22,7 +22,7 @@ const Comics = ({
 
   const fetchData = async () => {
     const response = await axios.get(
-      "http://localhost:3000/comics?" +
+      "https://site--marvel-backend--txtnrrwcytwl.code.run/comics?" +
         "title=" +
         inputComics +
         "&page=" +
