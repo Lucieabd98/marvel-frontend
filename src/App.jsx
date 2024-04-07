@@ -32,21 +32,26 @@ function App() {
 
   let maxPagesCharacters = Math.ceil(maxOfferCharacters / 100);
 
+  const [maxComics, setMaxComics] = useState();
+  let maxPagesComics = Math.ceil(maxComics / 100);
+
+  // const [heartClicked, setHeartClicked] = useState([]);
+
+  // const handleHeartClicked = (characterId) => {
+  //   const newHeartClicked = [...heartClicked];
+  //   newHeartClicked[characterId] = !newHeartClicked[characterId];
+
+  //   setHeartClicked(newHeartClicked);
+  // };
+
+  // console.log(heartClicked);
+
   const [favorites, setFavorites] = useState([]);
-
-  // console.log(favorites);
-
-  // console.log(favorites);
-
-  // console.log(favorites);
-
-  // console.log(favorites);
-  // const favoritesFromCookie = JSON.parse(Cookies.get("favorites"));
 
   useEffect(() => {
     if (Cookies.get("favorites")) {
       const favoritesFromCookie = JSON.parse(Cookies.get("favorites"));
-      console.log(favoritesFromCookie);
+      // console.log(favoritesFromCookie);
       setFavorites(favoritesFromCookie);
     }
   }, []);
@@ -62,6 +67,20 @@ function App() {
       expires: 10,
     });
   };
+
+  let favoriteId = [];
+
+  favorites.map((favorite) => {
+    favoriteId.push(favorite.id);
+  });
+
+  const handleEraseFromFavorites = (id) => {
+    const updatedFavorites = favorites.filter((fav) => fav.id !== id);
+    setFavorites(updatedFavorites);
+    Cookies.set("favorites", JSON.stringify(updatedFavorites), { expires: 10 });
+  };
+
+  // console.log(favoriteId);
 
   // Cookies.getJSON("favorites");
 
@@ -87,6 +106,12 @@ function App() {
                 setPageNumberCharacter={setPageNumberCharacter}
                 setMaxOfferCharacters={setMaxOfferCharacters}
                 maxPagesCharacters={maxPagesCharacters}
+                handleAddToFavorites={handleAddToFavorites}
+                favorites={favorites}
+                favoriteId={favoriteId}
+                // handleHeartClicked={handleHeartClicked}
+                // heartClicked={heartClicked}
+                handleEraseFromFavorites={handleEraseFromFavorites}
               />
             }
           ></Route>
@@ -100,6 +125,12 @@ function App() {
                 pageNumberComics={pageNumberComics}
                 setPageNumberComics={setPageNumberComics}
                 handleAddToFavorites={handleAddToFavorites}
+                // handleHeartClicked={handleHeartClicked}
+                // heartClicked={heartClicked}
+                setMaxComics={setMaxComics}
+                maxPagesComics={maxPagesComics}
+                favoriteId={favoriteId}
+                handleEraseFromFavorites={handleEraseFromFavorites}
               />
             }
           ></Route>

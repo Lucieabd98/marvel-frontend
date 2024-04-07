@@ -12,6 +12,10 @@ const Comics = ({
   pageNumberComics,
   setPageNumberComics,
   handleAddToFavorites,
+  setMaxComics,
+  maxPagesComics,
+  favoriteId,
+  handleEraseFromFavorites,
 }) => {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -27,6 +31,7 @@ const Comics = ({
     // console.log(response.data.results); --> un tableau avec chaque personnage à l'index i,
     // dont les clés sont .comics (tableau des comics); .description .name .thumbnail ._id
     setData(response.data.results);
+    setMaxComics(response.data.count);
     setIsLoading(false);
   };
   useEffect(() => {
@@ -46,10 +51,14 @@ const Comics = ({
           />
         </div>
       </div>
-
+      <PaginationComics
+        className="pagination-comics"
+        pageNumberComics={pageNumberComics}
+        setPageNumberComics={setPageNumberComics}
+        maxPagesComics={maxPagesComics}
+      />
       <div className="all-comics">
-        {data.map((comic) => {
-          //   console.log(comic);
+        {data.map((comic, index) => {
           const url =
             comic.thumbnail.path +
             "/" +
@@ -61,12 +70,26 @@ const Comics = ({
           return (
             <div className="one-comic-card" key={comic._id}>
               <div
+                className={
+                  favoriteId.find((id) => id === comic._id)
+                    ? "icon-red"
+                    : "icon-heart"
+                }
                 onClick={() => {
-                  handleAddToFavorites(comic);
-                  console.log("cliqué");
+                  const comicToSend = {
+                    type: "Comic",
+                    url: url,
+                    title: comic.title,
+                    id: comic._id,
+                  };
+                  if (favoriteId.find((id) => id === comic._id)) {
+                    handleEraseFromFavorites(comic._id);
+                  } else {
+                    handleAddToFavorites(comicToSend);
+                  }
                 }}
               >
-                <FontAwesomeIcon className="icon-heart" icon="heart" />
+                <FontAwesomeIcon icon="heart" />
               </div>
               <div className="card-container">
                 <div
@@ -86,10 +109,6 @@ const Comics = ({
           );
         })}
       </div>
-      <PaginationComics
-        pageNumberComics={pageNumberComics}
-        setPageNumberComics={setPageNumberComics}
-      />
     </main>
   );
 };

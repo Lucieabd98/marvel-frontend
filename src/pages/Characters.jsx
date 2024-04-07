@@ -13,11 +13,12 @@ const Characters = ({
   setPageNumberCharacter,
   setMaxOfferCharacters,
   maxPagesCharacters,
+  handleAddToFavorites,
+  favoriteId,
+  handleEraseFromFavorites,
 }) => {
-  // console.log(input);
-
   const [data, setData] = useState({});
-  // console.log(data);
+
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async () => {
@@ -28,8 +29,7 @@ const Characters = ({
         "&page=" +
         pageNumberCharacter
     );
-    // console.log(response.data.results); --> un tableau avec chaque personnage à l'index i,
-    // dont les clés sont .comics (tableau des comics); .description .name .thumbnail ._id
+
     setData(response.data.results);
     setMaxOfferCharacters(response.data.count);
     setIsLoading(false);
@@ -48,21 +48,43 @@ const Characters = ({
           <SearchInputCharacters input={input} setInput={setInput} />
         </div>
       </div>
-
+      <PaginationCharacters
+        className="pagination-characters"
+        pageNumberCharacter={pageNumberCharacter}
+        setPageNumberCharacter={setPageNumberCharacter}
+        maxPagesCharacters={maxPagesCharacters}
+      />
       <div className="all-characters">
-        {data.map((character) => {
+        {data.map((character, index) => {
           const url =
             character.thumbnail.path +
             "/" +
-            "standard_fantastic" +
+            "portrait_uncanny" +
             "." +
             character.thumbnail.extension;
 
-          // console.log(character._id);
-
           return (
             <div key={character._id}>
-              <div className="icon-heart">
+              <div
+                className={
+                  favoriteId.find((id) => id === character._id)
+                    ? "icon-red"
+                    : "icon-heart"
+                }
+                onClick={() => {
+                  const characterToSend = {
+                    type: "Character",
+                    url: url,
+                    title: character.name,
+                    id: character._id,
+                  };
+                  if (favoriteId.find((id) => id === character._id)) {
+                    handleEraseFromFavorites(character._id);
+                  } else {
+                    handleAddToFavorites(characterToSend);
+                  }
+                }}
+              >
                 <FontAwesomeIcon icon="heart" />
               </div>
               <Link
@@ -90,15 +112,8 @@ const Characters = ({
               </Link>
             </div>
           );
-          // console.log(url);
-          // console.log(character);
         })}
       </div>
-      <PaginationCharacters
-        pageNumberCharacter={pageNumberCharacter}
-        setPageNumberCharacter={setPageNumberCharacter}
-        maxPagesCharacters={maxPagesCharacters}
-      />
     </main>
   );
 };

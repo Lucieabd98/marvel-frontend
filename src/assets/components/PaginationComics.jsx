@@ -1,21 +1,24 @@
-const PaginationComics = ({ pageNumberComics, setPageNumberComics }) => {
+const PaginationComics = ({
+  pageNumberComics,
+  setPageNumberComics,
+  maxPagesComics,
+}) => {
   const previousPage = pageNumberComics - 1;
   const nextPage = pageNumberComics + 1;
-  const maxPage = 474;
 
   return (
-    <div>
+    <div className="pagination-comics">
       {pageNumberComics !== 1 && (
         <button
           onClick={() => {
             setPageNumberComics(1);
           }}
         >
-          firstpage
+          {"< <"}
         </button>
       )}
 
-      {previousPage - 1 > 0 && (
+      {/* {previousPage - 1 > 0 && (
         <button
           onClick={() => {
             setPageNumberComics(previousPage - 1);
@@ -23,7 +26,7 @@ const PaginationComics = ({ pageNumberComics, setPageNumberComics }) => {
         >
           {previousPage - 1}
         </button>
-      )}
+      )} */}
 
       {previousPage !== 0 && (
         <button
@@ -35,7 +38,7 @@ const PaginationComics = ({ pageNumberComics, setPageNumberComics }) => {
         </button>
       )}
       <button className="current-page">{pageNumberComics}</button>
-      {nextPage < 475 && (
+      {nextPage < maxPagesComics && (
         <button
           onClick={() => {
             setPageNumberComics(nextPage);
@@ -44,7 +47,7 @@ const PaginationComics = ({ pageNumberComics, setPageNumberComics }) => {
           {nextPage}
         </button>
       )}
-      {nextPage + 1 <= maxPage && (
+      {/* {nextPage + 1 <= maxPage && (
         <button
           onClick={() => {
             setPageNumberComics(nextPage + 1);
@@ -52,14 +55,14 @@ const PaginationComics = ({ pageNumberComics, setPageNumberComics }) => {
         >
           {nextPage + 1}
         </button>
-      )}
-      {pageNumberComics < maxPage && (
+      )} */}
+      {pageNumberComics < maxPagesComics && (
         <button
           onClick={() => {
-            setPageNumberComics(maxPage);
+            setPageNumberComics(maxPagesComics);
           }}
         >
-          last page
+          {"> >"}
         </button>
       )}
     </div>
