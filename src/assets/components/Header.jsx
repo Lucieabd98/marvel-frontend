@@ -13,7 +13,7 @@ const Header = ({
   const navigate = useNavigate();
   return (
     <header>
-      <div className="top-header red">
+      <div className="top-header ">
         <div className="logo-container">
           <img src={logoMarvel} />
         </div>

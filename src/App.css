@@ -57,6 +57,7 @@ header {
   border: #202020 solid 3px;
   align-items: center;
   justify-content: center;
+  background-color: #202020;
 }
 
 header .logo {
@@ -367,7 +368,8 @@ button.current-page {
 /* ============ FAVORITES =========== */
 
 .header-favorites {
-  background-image: url(./assets/imgs/characters_art_mas_dsk_01.jpg);
+  background-image: url(./assets/imgs/mu-sellpage-infinity-dsk_3840x1280-b_2.jpg);
+  background-size: cover;
   height: 400px;
   width: 100%;
   display: flex;
