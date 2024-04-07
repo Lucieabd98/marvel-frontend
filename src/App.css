@@ -70,6 +70,7 @@ header .logo {
 header img {
   width: 200px;
   padding: 2px;
+  cursor: pointer;
 }
 
 .logo-container {
