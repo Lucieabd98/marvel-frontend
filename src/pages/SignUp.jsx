@@ -67,7 +67,7 @@ const SignUp = ({ handleToken }) => {
         />
         <div className="button-signup">
           <button type="submit" className="signup">
-            S'inscrire
+            Sign Up
           </button>
         </div>
       </form>

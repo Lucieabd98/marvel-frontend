@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Link } from "react-router-dom";
+
 import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
@@ -55,7 +55,7 @@ const Login = ({ handleToken }) => {
           }}
         />
         <div className="button-login">
-          <button type="submit">Se connecter</button>
+          <button type="submit">Log In</button>
         </div>
       </form>
       {errorInput === "Request failed with status code 400" && (

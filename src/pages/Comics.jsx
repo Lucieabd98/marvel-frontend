@@ -30,8 +30,7 @@ const Comics = ({
         "&page=" +
         pageNumberComics
     );
-    // console.log(response.data.results); --> un tableau avec chaque personnage à l'index i,
-    // dont les clés sont .comics (tableau des comics); .description .name .thumbnail ._id
+
     setData(response.data.results);
     setMaxComics(response.data.count);
     setIsLoading(false);

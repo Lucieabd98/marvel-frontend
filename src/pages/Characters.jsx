@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SearchInputCharacters from "../assets/components/SearchInput";
 import PaginationCharacters from "../assets/components/PaginationCharacters";
 import { useNavigate } from "react-router-dom";
-import { Navigate } from "react-router-dom";
 
 const Characters = ({
   input,

@@ -14,7 +14,6 @@ const CharacterComics = () => {
     );
 
     setData(response.data);
-    console.log(data);
     setIsLoading(false);
   };
   useEffect(() => {
@@ -33,16 +32,13 @@ const CharacterComics = () => {
             "portrait_uncanny" +
             "." +
             comic.thumbnail.extension;
-          console.log(comic);
 
           return (
             <div className="card-container" key={comic._id}>
               <div
                 className="comic-img"
                 style={{ backgroundImage: `url(${url})` }}
-              >
-                {/* <img src={url} alt="" /> */}
-              </div>
+              ></div>
               <div>
                 <h2>{comic.title}</h2>
               </div>

@@ -1,9 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { useNavigate, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Cookies from "js-cookie";
 
 // ====== IMPORT DES PAGES ET COMPONENTS ======= //
@@ -11,7 +9,6 @@ import Cookies from "js-cookie";
 import Header from "./assets/components/Header";
 import Characters from "./pages/Characters";
 import Comics from "./pages/Comics";
-import SingleCharacter from "./pages/SingleCharacter";
 import Favorites from "./pages/Favorites";
 import CharacterComics from "./pages/CharacterComics";
 import SignUp from "./pages/SignUp";
@@ -109,7 +106,7 @@ function App() {
               />
             }
           ></Route>
-          <Route path="/character" element={<SingleCharacter />}></Route>
+
           <Route
             path="/comics"
             element={

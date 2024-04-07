@@ -15,7 +15,13 @@ const Header = ({
     <header>
       <div className="top-header ">
         <div className="logo-container">
-          <img src={logoMarvel} />
+          <img
+            src={logoMarvel}
+            onClick={() => {
+              navigate("/");
+              setInput("");
+            }}
+          />
         </div>
       </div>
 

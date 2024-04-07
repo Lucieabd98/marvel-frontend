@@ -18,16 +18,6 @@ const PaginationComics = ({
         </button>
       )}
 
-      {/* {previousPage - 1 > 0 && (
-        <button
-          onClick={() => {
-            setPageNumberComics(previousPage - 1);
-          }}
-        >
-          {previousPage - 1}
-        </button>
-      )} */}
-
       {previousPage !== 0 && (
         <button
           onClick={() => {
@@ -47,15 +37,7 @@ const PaginationComics = ({
           {nextPage}
         </button>
       )}
-      {/* {nextPage + 1 <= maxPage && (
-        <button
-          onClick={() => {
-            setPageNumberComics(nextPage + 1);
-          }}
-        >
-          {nextPage + 1}
-        </button>
-      )} */}
+
       {pageNumberComics < maxPagesComics && (
         <button
           onClick={() => {
